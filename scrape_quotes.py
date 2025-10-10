@@ -1,5 +1,4 @@
-# scrape_quotes.py
-# متطلبات: pip install requests beautifulsoup4 pandas
+
 
 import requests
 from bs4 import BeautifulSoup
@@ -10,7 +9,7 @@ import os
 BASE_URL = "https://quotes.toscrape.com"
 
 def fetch_page(url, session=None):
-    """يجلب صفحة HTML ويعيد كائن BeautifulSoup."""
+   
     s = session or requests
     headers = {
         "User-Agent": "Mozilla/5.0 (compatible; scraping-bot/1.0; +https://example.com/bot)"
@@ -21,8 +20,6 @@ def fetch_page(url, session=None):
     #  طباعة جزء من HTML للتأكيد
     print("\n HTML snippet from:", url)
     print(resp.text[:500])  # نعرض أول 500 حرف فقط لتجنّب الطول الكبير
-
-    #  يمكن أيضاً حفظ نسخة HTML لكل صفحة (اختياري)
     os.makedirs("html_pages", exist_ok=True)
     page_name = url.strip("/").replace("/", "_").replace(":", "")
     html_path = os.path.join("html_pages", f"{page_name}.html")
@@ -87,3 +84,4 @@ if __name__ == "__main__":
     out_csv = "quotes_toscrape_all_pages.csv"
     df.to_csv(out_csv, index=False, encoding="utf-8-sig")
     print(f" Saved to {out_csv}")
+
